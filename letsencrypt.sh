@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WEB_ROOT=/home/deploy/callenssolutions.com
+WEB_ROOT=/home/deploy/example.com
 
 # to use the web root plugin, you need this
 sudo -u deploy mkdir $WEB_ROOT/.well-known
@@ -16,7 +16,7 @@ sudo -u deploy mkdir $WEB_ROOT/.well-known
 sudo git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt
 cd /opt/letsencrypt
 
-./letsencrypt-auto certonly -a webroot --webroot-path=$WEB_ROOT -d callenssolutions.com -d www.callenssolutions.com
+./letsencrypt-auto certonly -a webroot --webroot-path=$WEB_ROOT -d example.com -d www.example.com
 
 # Generate Strong Diffie-Hellman Group
 sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048

@@ -1,11 +1,10 @@
 #!/bin/sh
 
 # generate key
-openssl genrsa -des3 -out qlsportal.com.key 2048
+openssl genrsa -des3 -out callenssolutions.com.key 2048
 # remove passphrase so webserver doesn't prompt for it
-openssl rsa -in qlsportal.com.key -out qlsportal.com.key
+openssl rsa -in callenssolutions.com.key -out callenssolutions.com.key
 # here comes the csr
-openssl req -new -key qlsportal.com.key -out qlsportal.com.csr
+openssl req -new -key callenssolutions.com.key -out callenssolutions.com.csr
 
-# alternatively, you can use this one-liner
-# openssl req -new -newkey rsa:2048 -nodes -keyout qlsportal.com.key -out qlsportal.com.csr
+#https://stackoverflow.com/questions/4658484/ssl-install-problem-key-value-mismatch-but-they-do-match#17420863

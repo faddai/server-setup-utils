@@ -1,5 +1,5 @@
 # install common utils
-apt-get install git
+apt-get install git zip
 
 # build node from source
 apt-get install make libssl-dev build-essential openssl pkg-config
@@ -7,13 +7,10 @@ apt-get install make libssl-dev build-essential openssl pkg-config
 # install mysql
 apt-get install mysql-server && mysql_install_db && mysql_secure_installation
 
-# install php and its modules
-apt-get install php5-fpm php5-mysql php5-mcrypt
-
 # installing latest stable version of nginx
 cd /tmp/ && wget http://nginx.org/keys/nginx_signing.key && sudo apt-key add nginx_signing.key &&
-echo "deb http://nginx.org/packages/ubuntu/ $(lsb_release --codename | cut -f2) nginx" >> /etc/apt/sources.list.d/nginx.list &&
-echo "deb-src http://nginx.org/packages/ubuntu/ $(lsb_release --codename | cut -f2) nginx" >> /etc/apt/sources.list.d/nginx.list &&
+sudo echo "deb http://nginx.org/packages/ubuntu/ $(lsb_release --codename | cut -f2) nginx" >> /etc/apt/sources.list.d/nginx.list &&
+sudo echo "deb-src http://nginx.org/packages/ubuntu/ $(lsb_release --codename | cut -f2) nginx" >> /etc/apt/sources.list.d/nginx.list &&
 sudo apt-get update && sudo apt-get install nginx
 
 # install mongo 3
@@ -44,7 +41,7 @@ sudo curl -LO http://do.co/assign-ip
 # defining a health check for Nginx service
 cd /etc/keepalived
 
-cat << 'EOF' > keepalived.conf 
+cat << 'EOF' > keepalived.conf
 vrrp_script chk_nginx {
     script "pidof nginx"
     interval 2
@@ -94,12 +91,3 @@ EOF
 sudo chmod +x master.sh
 
 sudo start keepalived
-
-
-
-# Floating IP = 159.203.48.194
-# LB1 = 10.137.135.138 / 159.203.15.71
-# LB2 = 10.137.232.139 / 159.203.17.79
-# APP1 = 10.137.39.138 / 159.203.31.148
-
-# curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/anchor_ipv4/address
